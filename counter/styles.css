@@ -1,0 +1,61 @@
+body {
+    padding: 0;
+    margin: 0;
+}
+
+.container {
+    background-color: black;
+    color: white;
+    display: inline-flexbox;
+    text-align: center;
+    overflow: hidden;
+}
+
+h1 {
+    font-size: 5rem;
+}
+
+.button {
+    font-size: 3rem;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: white;
+    color: rgb(0, 123, 255);
+    transition: background-color 0.25s;
+    margin-bottom: 15px;
+}
+
+.buttonLeft {
+    font-size: 3rem;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: white;
+    color: red;
+    transition: background-color 0.25s;
+}
+
+.buttonRight {
+    font-size: 3rem;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: white;
+    color: green;
+    transition: background-color 0.25s;
+}
+
+button:hover {
+    background-color: black;
+    border: solid white;
+    cursor: pointer;
+}
+
+#countLabel {
+    font-family: Helvetica, sans-serif;
+    font-size: 6rem;
+    color: white;
+}
+
+footer {
+    font-size: 1.2rem;
+    text-align: center;
+}
