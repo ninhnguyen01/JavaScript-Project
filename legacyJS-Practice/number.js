@@ -1,0 +1,13 @@
+const sum = 10 + 10;
+const difference = 45 - 33;
+const product = 8 * 10;
+const quotient = 66 / 33;
+let myVarPlus = 87;
+myVar++;
+let myVarMinus = 11;
+myVar--;
+const ourDecimal = 5.7;
+const myDecimal = 5.7;
+const product2 = 5.0 * 1.0;
+const quotient2 = 4.4 / 2;
+const remainder = 11 % 3;
