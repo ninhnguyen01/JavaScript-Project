@@ -1,0 +1,14 @@
+#title {
+    text-align: center;
+    font-size: 2rem;
+}
+
+#routine {
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.done {
+    color: darkgreen;
+    text-decoration: line-through solid black 2px;
+}
