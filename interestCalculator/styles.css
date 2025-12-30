@@ -1,0 +1,89 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: hsl(212, 66%, 47%);
+}
+
+#title {
+    text-align: center;
+}
+
+h1 {
+    background-color: hsl(191, 60%, 45%);
+    color: white;
+    font: 3em;
+    display: inline-block;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+form {
+    background-color: hsl(191, 60%, 45%);
+    max-width: 350px;
+    margin: auto;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px hsla(0, 0%, 0%, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+label {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+input {
+    width: 50%;
+    text-align: center;
+    font-size: 2em;
+    border: 2px solid hsl(0, 0%, 90%);
+    border-radius: 5px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+
+button {
+    background-color: hsl(110, 65%, 42%);
+    color: white;
+    font-size: 1.5em;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: hsl(110, 65%, 32%);
+}
+
+#total {
+    font-size: 2em;
+    font-weight: bold;
+    color: white;
+}
+
+#total-amount {
+    color: white;
+    font-weight: bold;
+}
+
+#total-container:hover {
+    background-color: hsl(110, 56%, 51%);
+    border-radius: 10px;
+    margin-top: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out;
+}
+
+hr {
+    color: white;
+}
+
+footer {
+    text-align: center;
+    color: white;
+}

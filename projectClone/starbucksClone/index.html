@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta
+      charset="UTF-8"
+      name="viewport"
+      content="width=device-width, initial-scale=1.0" />
+    <title>Starbucks Coffee Company Clone</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="image/favicon.ico" type="image/x-icon" />
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <div class="navbar-container">
+        <div class="navbar-brand">
+          <a href="index.html">
+            <img src="image/logo.png" alt="Starbucks Logo" class="logo" />
+          </a>
+        </div>
+
+        <ul class="navbar-nav-left">
+          <li>
+            <a href="#menu.html">Menu</a>
+          </li>
+
+          <li>
+            <a href="#rewards.html">Rewards</a>
+          </li>
+
+          <li>
+            <a href="#gift.html">Gift Cards</a>
+          </li>
+        </ul>
+
+        <ul class="navbar-nav-right">
+          <li>
+            <a href="#store-locator.html">
+              <img src="image/marker.png" alt="" /><span>Find a Store</span>
+            </a>
+          </li>
+
+          <li>
+            <button type="button" class="btn btn-dark-outline">Sign in</button>
+          </li>
+
+          <li>
+            <button type="button" class="btn btn-dark">Join Now</button>
+          </li>
+        </ul>
+
+        <button type="button" class="hamburger" id="menu-btn">
+          <span class="hamburger-top"></span>
+          <span class="hamburger-mid"></span>
+          <span class="hamburger-bottom"></span>
+        </button>
+      </div>
+    </nav>
+
+    <div class="mobile-menu hidden" id="menu">
+      <ul class="mobile-menu-list">
+        <li>
+          <a href="#menu.html">Menu</a>
+        </li>
+
+        <li>
+          <a href="#rewards.html">Rewards</a>
+        </li>
+
+        <li>
+          <a href="#gift.html">Gift Cards</a>
+        </li>
+      </ul>
+
+      <div class="mobile-menu-bottom">
+        <button type="button" class="btn btn-dark-outline">Sign in</button>
+        <button type="button" class="btn btn-dark">Join Now</button>
+        <div class="store">
+          <a href="#store-locator.html">
+            <img src="image/marker.png" alt="" /><span>Find a Store</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <section class="box box-a bg-primary text-center grid-col-2">
+      <img src="image/cold-foam.jpg" alt="Cold Foam" />
+      <div class="box-text">
+        <h2 class="text-xl" style="color: #32462f">Cold Foam Days are here</h2>
+        <p class="text-md" style="color: #32462f">
+          Cold foam is our treat from May 7-11. Join Starbucks® Rewards and see
+          your barista to enjoy this offer.*
+        </p>
+        <a href="#joinnow">Join now</a>
+      </div>
+    </section>
+
+    <section
+      class="box box-b bg-secondary text-center grid-col-2 grid-reversed">
+      <img src="image/spring-drink.webp" alt="Spring Drink" />
+      <div class="box-text">
+        <h2 class="text-xl">The Spring Edit</h2>
+        <p class="text-md">Fresh flavors, familiar joy.</p>
+        <a href="#viewmenu">View the menu</a>
+      </div>
+    </section>
+
+    <section class="box box-c bg-gift text-center grid-col-2">
+      <img src="image/gift-card.jpg" alt="Gift Card" />
+      <div class="box-text">
+        <h2 class="text-xl">For all they do</h2>
+        <p class="text-md">
+          Celebrate the teachers, nurses and moms in your life with a
+          well-deserved Starbucks Card.
+        </p>
+        <a href="#sendgift">Send an eGift</a>
+      </div>
+    </section>
+
+    <section class="box box-d bg-company text-center grid-col-2 grid-reversed">
+      <img src="image/employee.jpg" alt="Employee" />
+      <div class="box-text">
+        <h2 class="text-xl">More reasons to stay awhile</h2>
+        <p class="text-md">
+          Mugs, glasses and the condiment bar are back—and get free refills of
+          hot and iced brewed coffee or tea.**
+        </p>
+        <a href="#learnmore">Learn more</a>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <script src="script.js"></script>
+  </body>
+</html>
