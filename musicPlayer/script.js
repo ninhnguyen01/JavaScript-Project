@@ -1,153 +1,158 @@
-const musicContainer = document.getElementById('music-container');
-const playBtn = document.getElementById('play');
-const prevBtn = document.getElementById('prev');
-const nextBtn = document.getElementById('next');
+const playlistSongs = document.getElementById("playlist-songs");
+const playButton = document.getElementById("play");
+const pauseButton = document.getElementById("pause");
+const nextButton = document.getElementById("next");
+const previousButton = document.getElementById("previous");
+const playingSong = document.getElementById("player-song-title");
+const songArtist = document.getElementById("player-song-artist");
+const allSongs = [
+  {
+    id: 0,
+    title: "Drip (Italiana)",
+    artist: "Young Rame",
+    duration: "2:08",
+    src: "audio/Drip-Young Rame.mp3",
+  },
+  {
+    id: 1,
+    title: "Gravity (Hangugeo)",
+    artist: "Kim Jong Wan",
+    duration: "3:09",
+    src: "audio/Gravity-Kim Jong Wan.mp3",
+  },
+  {
+    id: 2,
+    title: "Mami (Espanol)",
+    artist: "RVFV",
+    duration: "2:48",
+    src: "audio/Mami-RVFV.mp3",
+  },
+  {
+    id: 3,
+    title: "Nightrace (Nihongo)",
+    artist: "S-Liam",
+    duration: "3:29",
+    src: "audio/Night Race-S Liam.mp3",
+  },
+  {
+    id: 4,
+    title: "Psycho (Deutsch)",
+    artist: "Skoob102",
+    duration: "1:41",
+    src: "audio/Psycho-Skoob102.mp3",
+  },
+];
 
-const audio = document.getElementById('audio');
-const progress = document.getElementById('progress');
-const progressContainer = document.getElementById('progress-container');
-const title = document.getElementById('title');
-const cover = document.getElementById('cover');
-const currTime = document.querySelector('#currTime');
-const durTime = document.querySelector('#durTime');
+const audio = new Audio();
 
-const songs = ['I Will Go', 'Leben Schnell', 'Prends ta paye', 'Soldi in Nero', 'Барби']
-
-let songIndex = 0;
-
-loadSong(songs[songIndex]);
-
-function loadSong(song) {
-  title.innerText = song;
-  audio.src = `audio/${song}.mp3`;
-  cover.src = `image/${song}.png`;
+const userData = {
+  songs: allSongs,
+  currentSong: null,
+  songCurrentTime: 0,
 }
 
-function playSong() {
-  musicContainer.classList.add('play');
-  playBtn.querySelector('i.fas').classList.remove('fa-play');
-  playBtn.querySelector('i.fas').classList.add('fa-pause');
-
+const playSong = (id, start=true) => {
+  const song = userData.songs.find((song) => song.id === id);
+  audio.src = song.src;
+  audio.title = song.title;
+  if (userData.currentSong === null || start) {
+    audio.currentTime = 0
+  } else {
+    audio.currentTime = userData.songCurrentTime;
+  }
+  userData.currentSong = song;
+  playButton.classList.add("playing");
+  setPlayerDisplay();
+  highlightCurrentSong();
+  setPlayButtonAccessibleText();
   audio.play();
 }
 
-function pauseSong() {
-  musicContainer.classList.remove('play');
-  playBtn.querySelector('i.fas').classList.add('fa-play');
-  playBtn.querySelector('i.fas').classList.remove('fa-pause');
-
+const pauseSong = () => {
+  userData.songCurrentTime = audio.currentTime;
+  playButton.classList.remove("playing");
   audio.pause();
 }
 
-function prevSong() {
-  songIndex--;
+const getCurrentSongIndex = () => userData.songs.indexOf(userData.currentSong);
 
-  if (songIndex < 0) {
-    songIndex = songs.length - 1;
+const getNextSong = () => userData.songs[getCurrentSongIndex() + 1];
+
+const getPreviousSong = () => userData.songs[getCurrentSongIndex() - 1];
+
+const playPreviousSong = () => {
+  if (userData.currentSong === null) return;
+  const previousSong = getPreviousSong();
+  if (previousSong) {
+    playSong(previousSong.id);
+  } else {
+    playSong(userData.songs[0].id);
   }
-
-  loadSong(songs[songIndex]);
-
-  playSong();
-}
-
-function nextSong() {
-  songIndex++;
-
-  if (songIndex > songs.length - 1) {
-    songIndex = 0;
-  }
-
-  loadSong(songs[songIndex]);
-
-  playSong();
-}
-
-function updateProgress(e) {
-  const { duration, currentTime } = e.srcElement;
-  const progressPercent = (currentTime / duration) * 100;
-  progress.style.width = `${progressPercent}%`;
-}
-
-function setProgress(e) {
-  const width = this.clientWidth;
-  const clickX = e.offsetX;
-  const duration = audio.duration;
-
-  audio.currentTime = (clickX / width) * duration;
-}
-
-function DurTime (e) {
-	const {duration,currentTime} = e.srcElement;
-	var sec;
-	var sec_d;
-
-	let min = (currentTime==null)? 0:
-	 Math.floor(currentTime/60);
-	 min = min <10 ? '0'+min:min;
-
-	function get_sec (x) {
-		if(Math.floor(x) >= 60){
-			
-			for (var i = 1; i<=60; i++){
-				if(Math.floor(x)>=(60*i) && Math.floor(x)<(60*(i+1))) {
-					sec = Math.floor(x) - (60*i);
-					sec = sec <10 ? '0'+sec:sec;
-				}
-			}
-		}else{
-		 	sec = Math.floor(x);
-		 	sec = sec <10 ? '0'+sec:sec;
-		 }
-	} 
-
-	get_sec (currentTime,sec);
-
-	currTime.innerHTML = min +':'+ sec;
-
-	let min_d = (isNaN(duration) === true)? '0':
-		Math.floor(duration/60);
-	 min_d = min_d <10 ? '0'+min_d:min_d;
-
-	 function get_sec_d (x) {
-		if(Math.floor(x) >= 60){
-			
-			for (var i = 1; i<=60; i++){
-				if(Math.floor(x)>=(60*i) && Math.floor(x)<(60*(i+1))) {
-					sec_d = Math.floor(x) - (60*i);
-					sec_d = sec_d <10 ? '0'+sec_d:sec_d;
-				}
-			}
-		}else{
-		 	sec_d = (isNaN(duration) === true)? '0':
-		 	Math.floor(x);
-		 	sec_d = sec_d <10 ? '0'+sec_d:sec_d;
-		 }
-	} 
-
-	get_sec_d (duration);
-
-	durTime.innerHTML = min_d +':'+ sec_d;
-		
 };
 
-playBtn.addEventListener('click', () => {
-  const isPlaying = musicContainer.classList.contains('play');
-
-  if (isPlaying) {
-    pauseSong();
+const playNextSong = () => {
+  if (userData.currentSong === null) {
+    playSong(userData.songs[0].id);
+    return
+  }
+  const nextSong = getNextSong();
+  if (nextSong) {
+    playSong(nextSong.id);
   } else {
-    playSong();
+    userData.currentSong = null;
+    userData.songCurrentTime = 0;
+    setPlayerDisplay();
+    highlightCurrentSong();
+    setPlayButtonAccessibleText();
+    pauseSong();
+  }
+}
+
+const setPlayerDisplay = () => {
+  const currentTitle = userData.currentSong?.title;
+  const currentArtist = userData.currentSong?.artist;
+
+  playingSong.textContent = currentTitle ? currentTitle : "";
+  songArtist.textContent = currentArtist ? currentArtist : "";
+};
+
+const highlightCurrentSong = () => {
+  const previousCurrentSong = document.querySelector('.playlist-song[aria-current="true"]');
+  previousCurrentSong?.removeAttribute("aria-current");
+  const songToHighlight = document.getElementById(
+    `song-${userData.currentSong?.id}`
+  );
+  
+  songToHighlight?.setAttribute("aria-current", "true");
+};
+
+const setPlayButtonAccessibleText = () => {
+  const song = userData.currentSong;
+  playButton.setAttribute("aria-label", userData.currentSong ? `Play ${song.title}` : "Play");
+};
+
+playButton.addEventListener("click", () => {
+  if (userData.currentSong === null) {
+    playSong(userData.songs[0].id);
+  } else {
+    playSong(userData.currentSong.id, false);
   }
 });
 
-prevBtn.addEventListener('click', prevSong);
-nextBtn.addEventListener('click', nextSong);
+const songs = document.querySelectorAll(".playlist-song");
 
-audio.addEventListener('timeupdate', updateProgress);
+songs.forEach((song) => {
+  const id = song.getAttribute("id").slice(5);
+  const songBtn = song.querySelector("button");
+  songBtn.addEventListener("click", () => {
+      playSong(Number(id));
+  })
+})
 
-progressContainer.addEventListener('click', setProgress);
+pauseButton.addEventListener("click", pauseSong);
 
-audio.addEventListener('ended', nextSong);
+nextButton.addEventListener("click", playNextSong);
 
-audio.addEventListener('timeupdate',DurTime);
+previousButton.addEventListener("click", playPreviousSong);
+
+audio.addEventListener("ended", playNextSong)
